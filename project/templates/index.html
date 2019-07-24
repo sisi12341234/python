@@ -1,0 +1,246 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<!-- <link rel="stylesheet" type="text/css" href="statics/css/swiper.min.css" />
+<link rel="stylesheet" type="text/css" href="statics/css/animate.min.css" /> -->
+<link rel="stylesheet" type="text/css" href="/static/css/indexstyle.css" />
+</head>
+<style>
+#imgyuan{
+		width: 100px;
+		height: 20px;
+		border-radius: 12px;
+		padding-left: 13px;
+		margin: 0 auto;
+		position: relative;
+		top: -40px;
+	}
+	/*
+	 *每一个小圆点
+	 * */
+	#imgyuan font{
+		border:1px solid white;
+		width:11px; 
+		height:11px;
+		border-radius:50%;
+		margin-right: 9px;
+		margin-top: 4px;
+		display: block;
+		float: left;
+		background-color: white;
+	}
+	.
+	
+</style>
+<body>
+
+<div class="top">
+	<div class="bar">
+		<div class="logo">
+			<p>能源缴费</p>
+		</div>
+		<div class="bar_menu">
+			<ul>
+				<li>
+					<a href="/index">首页</a>
+				</li>
+				<li>
+					<a href="typelist">用户界面</a>
+				</li>
+                <li>
+					<a href="typelist1" >员工界面</a>
+				</li>
+				<li>
+					<a href="/login/">用户登录</a>
+					<a href="zhuce">用户注册</a>
+				</li>
+                <li>
+					<a href="wxdenglu">员工登陆</a>
+				</li>
+			</ul>
+		</div>
+		<div class="area">
+			<span>中国站&nbsp;<i></i></span>
+		</div>
+		<div class="search">
+                    <form action="/search/" method="post" name="sh">{% csrf_token %}
+                        <input name="soshuo" id="soshuo" type="text" placeholder="请输入您要搜索的内容">
+                        <div class="search_icon"></div>
+                    </form>
+        </div>
+	</div>
+	<div class="banner">
+		<div class="banner-main">
+			<div class="banner-img"> 
+				<div id="imgchangediv">
+				<img src="/static/images/p1.jpg" style="display: block; width: 647px;height:321px;"/>
+				<img src="/static/images/lbt2.jpg" style="display: none;width: 647px;height:321px"/>
+				<img src="/static/images/p2.jpg" style="display: none;width: 647px;height:321px"/>
+				<img src="/static/images/lbt4.jpg" style="display: none;width: 647px;height:321px"/>
+				<div id="imgyuan">
+					<font></font>
+					<font></font>
+					<font></font>
+					<font></font>
+				</div>
+			</div>
+		</div>
+		<div class="banner-img2">
+				<ul>
+					<a href="msglist"><li><img src="/static/images/业务办理.png"/></li></a>
+					<a href="msglist"><li><img src="/static/images/电费查询.png"/></li></a>
+					<a href="msglist"><li><img src="/static/images/缴费.png"/></li></a>
+				</ul>
+				<ul>
+					<a href="msglist"><li><img src="/static/images/阶梯用电.png"/></li></a>
+					<a href="msglist"><li><img src="/static/images/资费标准.png"/></li></a>
+					<a href="msglist"><li><img src="/static/images/业务进度.png"/></li></a>
+				</ul>
+				<ul>
+						<a href="msglist"><li><img src="/static/images/营业网点.png"/></li></a>
+						<a href="msglist"><li><img src="/static/images/信息订阅.png"/></li></a>
+						<a href="msglist"><li><img src="/static/images/常见问题.png"/></li></a>
+				</ul>
+		</div>
+		<div class="main-1">
+			<h4>重要通知</h4>
+			<hr>
+			<ul>
+                <img src="/static/images/新闻图片.png" alt="">
+				{% for j in xinwen1 %}
+                    <a href="xinwenlist?p1={{ j.xinwen_biaoti }}"><li>{{ j.xinwen_biaoti }}</li></a>
+                {% endfor %}
+			</ul>
+		</div>
+		<div class="main-2">
+			<h4>政策法规</h4>
+			<hr>
+			<ul>
+                <img src="/static/images/新闻图片.png" alt="">
+                {% for j in xinwen2 %}
+                    <a href="xinwenlist?p1={{ j.xinwen_biaoti }}"><li>{{ j.xinwen_biaoti }}</li></a>
+                {% endfor %}
+			</ul>
+		</div>
+		<div class="main-3">
+			<h4>消息公告</h4>
+			<hr>
+			 <div>
+                   <p id="p">本地区状况良好,暂无故障信息</p>
+                    <ul id="p_message">
+                        {% for j in xinwen3 %}
+                            <li>{{ j.xinwen_biaoti }}</li>
+                            <li>{{ j.xinwen_neirong }}</li>
+                        {% endfor %}
+                    </ul>
+             </div>
+		</div>
+	</div>
+	<div class="recommend">
+		<ul>
+			<li>
+				<a href="#">
+					<h2>网上营业厅</h2>
+					<p>电费缴纳/预存      电费电量/网费/煤气费/水费查询       业务办理      信息订阅</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h2>常见问题</h2>
+					<p>网上缴费问题     家庭用电问题   服务开通问题  其他问题</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h2>服务支持</h2>
+					<p>资费标准  资料下载  政策/法规  业务办理 营业网点  服务承诺</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h2>投诉建议</h2>
+					<p>我要投诉   我要举报  提出建议  发表意见</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h2>联系我们</h2>
+					<p>为了更好的获取我们的新闻资讯，可以关注我们的微博</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+</body>
+<script>
+	function $(Nid){
+ 	return document.getElementById(Nid);
+	}
+	var index=0;//每张图片的下标，
+
+window.onload=function(){       
+    var start=setInterval(autoPlay,2000);//开始轮播，每秒换一张图
+
+    $('imgchangediv').onmouseover=function(){//当鼠标光标停在图片上，则停止轮播
+        clearInterval(start);
+    }
+    $('imgchangediv').onmouseout=function(){//当鼠标光标停在图片上，则开始轮播
+        start=setInterval(autoPlay,2000);
+    }
+
+    var lis=$('imgyuan').getElementsByTagName('font');//得到所有圆圈
+	console.log(lis.length)
+    //当移动到圆圈，则停滞对应的图片
+    var funny = function(i){
+        lis[i].onmouseover = function(){
+            changeImg(i)
+        }
+    }
+    for(var i=0;i<lis.length;i++){
+        funny(i);
+    }
+}
+//一轮过后，还是第二轮
+function autoPlay(){
+    if(index>3){
+        index=0;
+    }
+    changeImg(index++);
+}
+//对应圆圈和图片同步
+function changeImg(index){
+    var list=$('imgchangediv').getElementsByTagName('img');
+    var list1=$('imgyuan').getElementsByTagName('font');
+    for(i=0;i<list.length;i++){
+        list[i].style.display='none';
+        list1[i].style.backgroundColor='white';
+    }
+    list[index].style.display='block';
+    list1[index].style.backgroundColor='#107a94';
+}
+{#    停电信息显示#}
+    function show(){
+                     var newdata=document.getElementById("p_message").getElementsByTagName("li");
+        console.log(newdata);
+                    if(newdata[0].innerHTML){
+                        document.getElementById("p").style.cssText="display:none;";
+                        document.getElementById("p_message").style.cssText="display:block;";
+                        console.log("hhhhhhh");
+                    }
+                    else{
+                        document.getElementById("p").style.cssText="display:block;";
+                        document.getElementById("p_message").style.cssText="display:none;";
+                        console.log("4444444444");
+                    }
+                }
+                show();
+
+</script>
+</html>

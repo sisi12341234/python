@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>denglu</title>
+
+<!-- <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Slide Login Form template Responsive, Login form web template, Flat Pricing tables, Flat Drop downs Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" /> -->
+
+	<!-- Custom Theme files -->
+    <link href="/static/css/loginstyle.css" rel="stylesheet" type="text/css" media="all" />
+{#	<link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />#}
+	<!-- //Custom Theme files -->
+
+	<!-- web font -->
+	<!-- <link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet"> -->
+	<!-- //web font -->
+</head>
+<body>
+        <div class="top">
+                <div class="banner">
+                        <div class="bg-layer" style="background-image: url('/static/images/1.jpg')">
+                                <div class="header-main">
+                                    <h1>员工登陆</h1>
+                                    <h1 id="error" style="display: none">{{error}}</h1>
+                                    <div class="main-icon">
+                                        <span class="fa fa-eercast"></span>
+                                    </div>
+                                    <div class="header-left-bottom">
+                                        <form action="{% url 'check_index' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="icon1">
+                                                <span class="fa fa-user" aria-hidden="true"></span>
+                                                <input type="text" name="Username" id="Username" placeholder="Username" required=""/>
+                                            </div>
+                                            <div class="icon1">
+                                                <span class="fa fa-lock"></span>
+                                                <input type="password" name="Password" id="Password" placeholder="Password" required=""/>
+                                            </div>
+                                            <div class="login-check">
+                                                 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
+                                            </div>
+                                            <div class="bottom">
+                                                <button class="btn" onclick="check();">Log In</button>
+                                            </div>
+                                            <div class="links">
+                                                <p><a href="/index">return home</a></p>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </form>	
+                                    </div>
+                                    <div class="social">
+                                        <ul>
+                                            <li>or login using : </li>
+                                            <li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
+                                            <li><a href="#" class="twitter"><span class="fa fa-twitter"></span></a></li>
+                                            <li><a href="#" class="google"><span class="fa fa-google-plus"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- copyright -->
+                                <div class="copyright">
+                                    <p>© 2019 Slide Login Form . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a></p>
+                                </div>
+                                <!-- //copyright --> 
+                            </div>
+                </div>
+            </div>
+<!-- //main -->
+</body>
+<script type="text/javascript">
+                function show(){
+                     var newdata=document.getElementById("error");
+                    if(newdata.innerText){
+                        alert(newdata.innerText+"，请重新登录")
+                    }
+
+{#                    var value = document.getElementById("Username").value;#}
+{#                    var reg=/^[1-9]\d*$|^0$/; // 注意：故意限制了 0321 这种格式，如不需要，直接reg=/^\d+$/;#}
+{#                    if(reg.test(value)!=true){#}
+{#                        alert("请输入员工号")#}
+{#                    }#}
+                     }
+                show();
+            </script>
+</html>

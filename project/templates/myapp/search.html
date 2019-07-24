@@ -1,0 +1,36 @@
+{% extends 'myapp/base.html' %}
+{% load static from staticfiles %}
+{% block base %}
+<html>
+<style>
+    .xwList{
+        position: absolute;
+        top: 50px;
+        font-size:17px;
+        line-hight:100%;
+        margin:0 auto ;
+        width: 100%;
+    }
+    .xwList div{
+        height: 40px;
+    }
+    .xwList div:nth-child(even){
+         background:#d5e5fa;
+    }
+.xwList div:nth-child(odd){
+         background: #fff;
+    }
+</style>
+    <body>
+        <div class="xwList">
+       <h1>搜索结果如下：</h1>
+        {% for i in list %}
+                <div>
+                    <a href="/xinwenlist/?p1={{i.xinwen_biaoti}}">
+                        <p>{{i.xinwen_biaoti}}</p></a>
+                </div>
+        {% endfor %}
+    </div>
+    </body>
+{% endblock base %}
+<!DOCTYPE html>

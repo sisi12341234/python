@@ -1,0 +1,90 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{title}}</title>
+        <link href="{% static 'main/css/base.css' %}" rel="stylesheet" type="text/css">
+        <script type="text/javascript" charset="utf-8" src="{% static 'main/js/base.js' %}"></script>
+    </head>
+    <body>
+        <div class="top">
+            <div class="bar">
+                <div class="logo">
+                    <p>能源缴费</p>
+                </div>
+                <div class="bar_menu">
+                    <ul>
+                        <li>
+                            <a href="#">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="#">客服中心</a>
+                        </li>
+                        <li>
+                            <a href="#">合作伙伴</a>
+                        </li>
+                        <li>
+                            <a href="/login/">登录</a>
+                            <a href="#">注册</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="area">
+                    <span>中国站&nbsp;<i></i></span>
+                </div>
+                <div class="search">
+                    <input name="soshuo" type="text" placeholder="请输入您要搜索的内容">
+                    <div class="search_icon"></div>
+                </div>
+            </div>
+            <div class="nav">
+                <ul>
+                    <div></div>
+                    <li>
+                        <a href="index.html" >首页</a>
+                    </li>
+                    <li>
+                        <a href="wx">维修界面</a>
+                    </li>
+                </ul>
+            </div>
+            {% block base %}
+            {% endblock base %}
+            <div class="recommend">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <h2>网上营业厅</h2>
+                            <p>电费缴纳/预存      电费电量/网费/煤气费/水费查询       业务办理      信息订阅</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h2>常见问题</h2>
+                            <p>网上缴费问题     家庭用电问题   服务开通问题  其他问题</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h2>服务支持</h2>
+                            <p>资费标准  资料下载  政策/法规  业务办理 营业网点  服务承诺</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h2>投诉建议</h2>
+                            <p>我要投诉   我要举报  提出建议  发表意见</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h2>联系我们</h2>
+                            <p>为了更好的获取我们的新闻资讯，可以关注我们的微博</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

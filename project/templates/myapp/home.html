@@ -1,0 +1,46 @@
+{% extends 'myapp/base.html' %}
+{% load static from staticfiles %}
+{% block base %}
+    {% block linkscript %}
+        <link href="{% static 'home/css/home.css' %}" rel="stylesheet" type="text/css">
+        <script type="text/javascript" charset="utf-8" src="{% static 'home/js/home.js' %}"></script>
+    {% endblock linkscript %}
+<html>
+<body>
+<div class="banner">
+    <div class="banner-main">
+        <div class="banner-img"></div>
+        <div class="banner-img2">
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+		</div>
+		<div class="main-1">
+			<h4>重要通知</h4>
+			<hr>
+			<ul>
+                <li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="main-2">
+			<h4>政策法规</h4>
+			<hr>
+		</div>
+		<div class="main-3">
+			<h4>停电公告</h4>
+			<hr>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+{% endblock base %}

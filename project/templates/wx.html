@@ -1,0 +1,186 @@
+{% extends 'myapp/base.html' %}
+{% load static from staticfiles %}
+{% block base %}
+    {% block linkscript %}
+        <link href="{% static 'cart/css/cart.css' %}" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="{% static 'cart/js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'cart/js/jquery.SuperSlide.2.1.1.js' %}"></script>
+        <script type="text/javascript" charset="utf-8" src="{% static 'cart/js/cart.js' %}"></script>
+    {% endblock linkscript %}
+    <html>
+        <body>
+            <div class="solution-box">
+                <div class="solution-bj">
+                    <div class="solution-header">
+                    </div>
+                    <div class="solution-content clearfix">
+                        <div class="solution-list hd">
+                            <ul>
+                                <li class="on">
+                                    <h2>个人信息</h2>
+                                </li>
+                                <li>
+                                    <h2>维修信息</h2>
+                                </li>
+                                <li>
+                                    <h2>维修费用单</h2>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="solution-item bd">
+                            <ul style="display:block">
+                                <li>
+                                    <div class="one">
+                                        <h2>个人信息</h2>
+                                        <span>编号：{{ id }}</span>
+                                        <span>姓名：{{ name }}</span>
+                                        <span>账户余额：{{ money }}</span>
+                                         <span>联系电话：{{ tele }}</span>
+                                    </div>
+                                </li>
+                                <hr>
+                                <li>
+                                    <h2>历史维修记录</h2><span id="text" style="display: none;">{{ wxlist}}</span>
+                                    <div class="one_table">
+                                        <table >
+                                            <thead>
+                                                <tr id="biaoti">
+                                                    <th>维修单号</th>
+                                                    <th>申请人</th>
+                                                    <th>维修日期</th>
+                                                    <th>维修地点</th>
+                                                    <th>维修花费</th>
+                                                    <th>负责人</th>
+                                                    <th>维修状态</th>
+                                                </tr>
+                                            </thead>
+                                        <tbody>
+                                        {% for item in wxlist %}
+                                            <tr>
+                                                <td >{{ item.0}}</td>
+                                                <td>{{ item.1}}</td>
+                                                <td>{{ item.2}}</td>
+                                                <td><p style="overflow:hidden;width:150px;height:50px;" >{{ item.3}}</p></td>
+                                                <td>{{ item.4}}</td>
+                                                <td>{{ name }}</td>
+                                                <td>{{ item.5 }}</td>
+                                                <td></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <h2>您的新任务</h2>
+                                        <hr>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <h3 id="newdata">{{ message }}</h3>
+                                        <div class="two" id="two">
+                                            <div> 维修申请人</div>
+                                            <p>{{ yonghu_name }}</p>
+                                            <div>联系电话</div>
+                                            <p>{{ yonghu_tele }}</p>
+                                            <div>维修地址</div>
+                                            <p>{{ yonghu_live }}</p>
+                                            <div>维修描述</div>
+                                            <div style="height: 200px;width: 100%; background-color:#f0f0f0;margin-top: 20px;text-align:center; line-height:100px;color:#333333">
+                                                {{ wx_news }}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <h2 >维修单记录</h2>
+                                    <hr>
+                                    <br/><br/>
+                                    <h3 id="main_non">因无新任务，不需填写维修单记录</h3>
+                                    <div class="main" id="main">
+                                        <form class="table" method="post" action="{% url 'wx' %}">
+                                            {% csrf_token %}
+                                        <div class="table-l">
+                                            维护单编号: <span>{{ wx_id }}</span>
+                                            <br/><br/>
+                                            维修申请人:<span>{{ yonghu_name }}</span>
+                                            <br/><br/>
+                                            联系电话:<span>{{ yonghu_tele }}</span>
+                                            <br/><br/>
+                                            维修地址：<span>{{ yonghu_live }}</span>
+                                            <br/><br/>
+                                            维修员:<span>{{ name }}</span>
+                                            <br/><br/>
+                                            联系电话:<span>{{ tele }}</span>
+                                            <br/><br/>
+                                            维修金额: <input type="text" id="cz" name="wx_money" required="" style="width: 100px;height: 30px;">元
+                                    </div>
+                                    <div class="table-r">
+                                        维修描述:<br/><br/>
+                                        <textarea   name="wx_statment" cols="40"   rows="15"></textarea>
+                                        <br/><br/>
+                                    </div>
+                                        <div class="table-b">
+                                            <button type="submit" class="btna" onclick="shows()">提交</button>
+                                        </div>
+                                    </form>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                jQuery(".solution-content").slide({});
+                function show() {
+                    var newdata = document.getElementById("newdata");
+                    if (newdata.innerText == 1) {
+                        newdata.style.cssText = "display:none";
+                        document.getElementById("two").style.cssText = "display:block;";
+                        document.getElementById("main").style.cssText = "display:block;";
+                        document.getElementById("main_non").style.cssText = "display:none";
+                        console.log("hhhhhhh");
+                    }
+                    else {
+                        newdata.style.cssText = "display:block;";
+                        document.getElementById("two").style.cssText = "display:none;";
+                        document.getElementById("main").style.cssText = "display:none;";
+                        document.getElementById("main_non").style.cssText = "display:block;";
+                    }
+                }
+                show();
+                function check(){
+                var value = document.getElementById("cz").value;
+                var reg=/^[1-9]\d*$|^0$/; // 注意：故意限制了 0321 这种格式，如不需要，直接reg=/^\d+$/;
+                if(reg.test(value)==true){
+                    if(value!=0)
+                        return true;
+                    else
+                        alert("不可以为零！");
+                        return false;
+                }
+                else{
+                    alert("不是纯数字！失败！");
+                    return false;
+                }
+            }
+                function shows() {
+
+                    alert("提交成功!个人信息处可查看提交记录");
+                    show();
+                }
+            </script>
+
+        </body>
+    </html>
+{% endblock base %}
+<!DOCTYPE html>

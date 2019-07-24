@@ -1,0 +1,67 @@
+.banner{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0;
+    z-index:0
+}
+.banner-main{
+    width:73.8%;
+    height:100%;
+    position:absolute;
+    top:100px;
+    left:13%;
+    background-color: rgb(173, 230, 69)
+}
+.banner-img{
+    float:left;
+    width:65%;
+    height:50%;
+    background: #107a94;
+    margin-top:20px;
+}
+.banner-img2{
+    float:right;
+    width:33%;
+    height:50%;
+    background: #107a94;
+    margin-top:20px;
+    margin-left:10px;
+    border: #727577 solid 1px;
+}
+.banner-img2 li{
+    float:right;
+    border: #fff solid 1px;
+    margin: 5px;
+    width:46%;
+    height: 150px;
+}
+.main-1{
+    float:left;
+    border: #fff solid 1px;
+    margin-top:20px;
+    width:32%;
+    height: 230px;
+}
+.main-2{
+    float:left;
+    border: #fff solid 1px;
+    margin-top:20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width:32%;
+    height: 230px;
+}
+.main-3{
+    float:right;
+    border: #fff solid 1px;
+    margin-top:20px;
+    width:32%;
+    height: 230px;
+}
+.banner h4{
+    padding:10px;
+    padding-left: 20px;
+    color:#107a94;
+}

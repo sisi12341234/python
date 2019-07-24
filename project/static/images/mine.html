@@ -1,0 +1,323 @@
+{% extends 'myapp/base.html' %}
+{% load static from staticfiles %}
+{% block base %}
+    {% block linkscript %}
+        <link href="{% static 'mine/css/mine.css' %}" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="{% static 'mine/js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'mine/js/jquery.SuperSlide.2.1.1.js' %}"></script>
+        <script type="text/javascript" charset="utf-8" src="{% static 'mine/js/mine.js' %}"></script>
+    {% endblock linkscript %}
+    <html>
+        <body>
+            <div class="solution-box">
+                <div class="solution-bj">
+                    <div class="solution-header"></div>
+                    <div class="solution-content clearfix">
+                        <div class="solution-list hd">
+                            <ul>
+                                <li class="on">
+                                    <h2>个人信息</h2>
+                                </li>
+                                <li>
+                                    <h2>个人能源使用情况</h2>
+                                </li>
+                                <li>
+                                    <h2>缴纳能源使用费用</h2>
+                                </li>
+                                <li>
+                                    <h2>缴纳维修费用</h2>
+                                </li>
+                                <li>
+                                    <h2>充值余额</h2>
+                                </li>
+                                <li>
+                                    <h2>查看缴费通知</h2>
+                                </li>
+                                <li>
+                                    <h2>提交维修申请</h2>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="solution-item bd">
+                            <ul>
+                                <form class="table">
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">账户余额：{{balance}}</span></div>
+                                        <div><span style="font-size:20px">联系电话：{{tel}}</span></div>
+                                        <div><span style="font-size:20px">家庭住址：{{home}}</span></div>
+                                    </div>
+                                    <div class="table-r">
+                                    </div>
+                                </form>
+                            </ul>
+                            <ul>
+                                <form class="table">
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">账户余额：{{balance}}</span></div>
+                                        <div><span style="font-size:20px">显示状况：{{error}}</span></div>
+                                    </div>
+                                    <div class="table-r">
+                                        {% if user0.yongliang_type == 0 %}
+                                            <div><span style="font-size:20px">能源类型：网费</span></div>
+                                            <div><span style="font-size:20px">上月用量：{{user0.yongliang_jichumany}}</span></div>
+                                            <div><span style="font-size:20px">此月用量：{{user0.yongliang_many}}</span></div>
+                                        {% endif %}
+                                        {% if user1.yongliang_type == 1 %}
+                                            <div><span style="font-size:20px">能源类型：电费</span></div>
+                                            <div><span style="font-size:20px">上月用量：{{user1.yongliang_jichumany}}</span></div>
+                                            <div><span style="font-size:20px">此月用量：{{user1.yongliang_many}}</span></div>
+                                        {% endif %}
+                                        {% if user2.yongliang_type == 2 %}
+                                            <div><span style="font-size:20px">能源类型：水费</span></div>
+                                            <div><span style="font-size:20px">上月用量：{{user2.yongliang_jichumany}}</span></div>
+                                            <div><span style="font-size:20px">此月用量：{{user2.yongliang_many}}</span></div>
+                                        {% endif %}
+                                        {% if user3.yongliang_type == 3 %}
+                                            <div><span style="font-size:20px">能源类型:煤气费</span></div>
+                                            <div><span style="font-size:20px">上月用量：{{user3.yongliang_jichumany}}</span></div>
+                                            <div><span style="font-size:20px">此月用量：{{user3.yongliang_many}}</span></div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </ul>
+                            <ul>
+
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">账户余额：{{balance}}</span></div>
+                                    </div>
+                                    <div class="table-r">
+                                        <form action="/jiaofei1/" method="POST" name="table1" onsubmit="return f1()">{% csrf_token %}
+                                            <div><span style="font-size:20px">能源类型：网费</span></div>
+                                            <div><span style="font-size:20px" >缴费金额:</span>
+                                                <span style="font-size:20px" id="f1">{{userx1.feiyong_qian}}</span>
+                                            </div>
+                                            <div class="bottom"><button class="btn">缴费</button></div>
+                                        </form>
+                                        <form action="/jiaofei2/" method="POST" name="table2" onsubmit="return f2()">
+                                            <div><span style="font-size:20px">能源类型：电费</span></div>
+                                            <div><span style="font-size:20px" >缴费金额：</span>
+                                                <span style="font-size:20px" id="f2">{{userx2.feiyong_qian}}</span>
+                                            </div>
+                                            <div class="bottom"><button class="btn">缴费</button></div>
+                                        </form>
+                                        <form action="/jiaofei3/" method="POST" name="table3" onsubmit="return f3()">
+                                            <div><span style="font-size:20px">能源类型：水费</span></div>
+                                            <div><span style="font-size:20px" >缴费金额：</span>
+                                                <span style="font-size:20px" id="f3">{{userx3.feiyong_qian}}</span>
+                                            </div>
+                                            <div class="bottom"><button class="btn">缴费</button></div>
+                                        </form>
+                                        <form action="/jiaofei4/" method="POST" name="table4" onsubmit="return f4()">
+                                            <div><span style="font-size:20px">能源类型：煤气费</span></div>
+                                            <div><span style="font-size:20px" >缴费金额：</span>
+                                                <span style="font-size:20px" id="f4">{{userx4.feiyong_qian}}</span>
+                                            </div>
+                                            <div class="bottom"><button class="btn">缴费</button></div>
+                                        </form>
+                                        <span id="jsg" style="display:none">{{errorj}}</span>
+                                    </div>
+
+                            </ul>
+                            <ul>
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">账户余额：{{balance}}</span></div>
+                                        <div><span style="font-size:30px">{{errorw}}</span></div>
+                                    </div>
+                                    <div class="table-r">
+                                        {% if length != 0 %}
+                                            <form action="/weixiulist/" method="POST" name="FORMX">{% csrf_token %}
+                                                <div><span style="font-size:20px">维修人员：{{weixiuj.yuangong_id_id}}</span></div>
+                                                <div><span style="font-size:20px">维修金额：{{weixiuj.money}}</span></div>
+                                                <div><span style="font-size:20px">维修时间：{{weixiuj.time}}</span></div>
+                                                <div class="bottom">
+                                                    <button class="btx">缴费</button>
+                                                </div>
+                                            </form>
+                                        {% endif %}
+                                        <span id="lsg" style="display:none">{{errorfj}}</span>
+                                    </div>
+                            </ul>
+                            <ul>
+                                <form action="/minelist/" method="post" name="FORM" onsubmit="return check()">{% csrf_token %}
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">账户余额：{{balance}}</span></div>
+                                        <div><span style="font-size:20px">联系电话：{{tel}}</span></div>
+                                        <div><span style="font-size:20px">家庭住址：{{home}}</span></div>
+                                        <div><span style="font-size:20px">充值：</span><input type="text" name="cz"  id="cz" placeholder="充值金额"  style="width: 250px;height: 30px;margin-bottom: 15px;"></div>
+                                        <div class="bottom">
+                                            <button class="btn">提交</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-r">
+                                        <span id="msg" style="display:none">{{mg}}</span>
+                                    </div>
+                                </form>
+                            </ul>
+                            <ul>
+                                <form class="table">
+                                    <div class="table-l">
+                                        <div><span style="font-size:30px">能源缴费通知</span></div>
+                                        {% for j in feiyong %}
+                                            {% if j.feiyong_qian != "0" %}
+                                                {% if j.feiyong_leixing == 0 %}
+                                                    <div><span style="font-size:20px">能源类型：网费</span></div>
+                                                    <div><span style="font-size:20px">缴费金额：{{j.feiyong_qian}}</span></div>
+                                                {% endif %}
+                                                {% if j.feiyong_leixing == 1 %}
+                                                    <div><span style="font-size:20px">能源类型：电费</span></div>
+                                                    <div><span style="font-size:20px">缴费金额：{{j.feiyong_qian}}</span></div>
+                                                {% endif %}
+                                                {% if j.feiyong_leixing == 2 %}
+                                                    <div><span style="font-size:20px">能源类型：水费</span></div>
+                                                    <div><span style="font-size:20px">缴费金额：{{j.feiyong_qian}}</span></div>
+                                                {% endif %}
+                                                {% if j.feiyong_leixing == 3 %}
+                                                    <div><span style="font-size:20px">能源类型：煤气费</span></div>
+                                                    <div><span style="font-size:20px">缴费金额：{{j.feiyong_qian}}</span></div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="table-r">
+                                        <div><span style="font-size:30px">维修缴费通知</span></div>
+                                        <div><span style="font-size:30px">{{errorw}}</span></div>
+                                        {% for w in weihu %}
+                                            <div><span style="font-size:20px">维修人员：{{w.yuangong_id_id}}</span></div>
+                                            <div><span style="font-size:20px">维修金额：{{w.money}}</span></div>
+                                            <div><span style="font-size:20px">维修时间：{{w.time}}</span></div>
+                                        {% endfor %}
+                                    </div>
+                                </form>
+                            </ul>
+                            <ul>
+                                <form action="/tijiao/" method="post" name="FORMX">{% csrf_token %}
+                                    <div class="table-l">
+                                        <div><span style="font-size:20px">用户名称：{{name}}</span></div>
+                                        <div><span style="font-size:20px">用户类别：{{category}}</span></div>
+                                        <div><span style="font-size:20px">联系电话：{{tel}}</span></div>
+                                        <div><span style="font-size:20px">家庭住址：{{home}}</span></div>
+                                        <div class="bottom">
+                                            <button class="btn">提交</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-r">
+                                        <div><span style="font-size:20px">维修信息</span></div>
+                                        <div><textarea style="width:300px;height:100px;" name="ns"></textarea></div>
+                                        <span id="tsg" style="display:none">{{msg}}</span>
+                                    </div>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".solution-content").slide({});
+            </script>
+            <script>
+                var f = function(){
+                    var oMsg = document.getElementById("msg");
+                    var show = oMsg.innerHTML;
+                    if(show!=null && show!="")
+                        alert(show);
+                }
+                f();
+                var j = function(){
+                    var omsg = document.getElementById("tsg");
+                    var shows = omsg.innerHTML;
+                    if(shows!=null && shows!="")
+                        alert(shows);
+                }
+                j();
+                var jf = function(){
+                    var jsg = document.getElementById("jsg");
+                    var shows = jsg.innerHTML;
+                    if(shows!=null && shows!="")
+                        alert(shows);
+                }
+                jf();
+                var jwf = function(){
+                    var lsg = document.getElementById("lsg");
+                    var shows = lsg.innerHTML;
+                    if(shows!=null && shows!="")
+                        alert(shows);
+                }
+                jwf();
+            </script>
+            <script>
+                function check(){
+                var value = document.getElementById("cz").value;
+                var reg=/^[1-9]\d*$|^0$/; // 注意：故意限制了 0321 这种格式，如不需要，直接reg=/^\d+$/;
+                if(reg.test(value)==true){
+                    if(value!=0)
+                        return true;
+                    else
+                        alert("不可以为零！");
+                        return false;
+                }
+                else{
+                    alert("不是纯数字！失败！");
+                    return false;
+                }
+            }
+            </script>
+            <script>
+                function f1(){
+                    var fy1 = document.getElementById("f1");
+                    var al1 = fy1.innerHTML;
+                    if(al1=="0"){
+                        alert("不需缴费");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                function f2(){
+                    var fy2 = document.getElementById("f2");
+                    var al2 = fy2.innerHTML;
+                    if(al2=="0"){
+                        alert("不需缴费");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                function f3(){
+                    var fy3 = document.getElementById("f3");
+                    var al3 = fy3.innerHTML;
+                    if(al3=="0"){
+                        alert("不需缴费");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                function f4(){
+                    var fy4 = document.getElementById("f4");
+                    var al4 = fy4.innerHTML;
+                    if(al4=="0"){
+                        alert("不需缴费");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+            </script>
+        </body>
+    </html>
+{% endblock base %}
+<!DOCTYPE html>

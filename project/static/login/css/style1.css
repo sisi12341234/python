@@ -1,0 +1,22 @@
+﻿@charset "utf-8";
+
+/*
+ 
+ * 17素材vip建站专区模块代码
+ * 详尽信息请看官网：http://www.17sucai.com/pins/vip
+ *
+ * Copyright , 温州易站网络科技有限公司版权所有
+ *
+ * 请尊重原创，未经允许请勿转载。
+ * 在保留版权的前提下可应用于个人或商业用途
+ 
+*/
+
+*{margin:0;padding:0;box-sizing:content-box;font-family:"微软雅黑"}
+a{text-decoration:none;color:inherit}
+img{border:none;max-width:100%}
+ul{list-style:none}
+input::-webkit-input-placeholder{color:#ccc}
+input:-ms-input-placeholder{color:#ccc}
+input::-moz-placeholder{color:#ccc}
+.top{width:100%;height:640px;position:relative}

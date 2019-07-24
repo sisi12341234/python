@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{% load static from staticfiles %}
+{% block base %}
+    <html>
+    <style>
+    .wen{
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        top: 50px;
+        left:8%;
+        font-size: 20px;
+        color: #999999;
+    }
+     .wen p{
+         margin-left: 20px;
+     }
+    </style>
+    <body>
+    <div class="wen">
+        <img src="" alt="">
+        <h1>{{new.xinwen_biaoti}}</h1>
+        <hr>
+        <p>{{new.xinwen_neirong}}</p>
+    </div>
+
+    </body>
+{% endblock base %}
+<!DOCTYPE html>
